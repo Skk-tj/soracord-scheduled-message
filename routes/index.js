@@ -7,7 +7,7 @@ const discordClient = require('../discord-client')
 const moment = require('moment-timezone');
 
 const SERVER_ID = "734575232245039145";
-const LIVE_CHANNEL_ID = "735529538066579467";
+const LIVE_CHANNEL_ID = "734576940530270249";
 const LOG_CHANNEL_ID = "907160595994910761";
 
 /* GET home page. */
