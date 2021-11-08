@@ -1,0 +1,23 @@
+{
+  "name": "scheduled-message",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "discord.js": "~13.3.1",
+    "express": "~4.17.1",
+    "http-errors": "~1.6.3",
+    "moment-timezone": "^0.5.33",
+    "morgan": "~1.9.1",
+    "multer": "^1.4.3",
+    "node-schedule": "^2.0.0",
+    "pug": "3.0.2"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0"
+  }
+}
