@@ -6,8 +6,9 @@ const discordClient = require('../discord-client')
 
 const moment = require('moment-timezone');
 
-const SERVER_ID = "906790632557772851";
-const CHANNEL_ID = "906790633073704992";
+const SERVER_ID = "734575232245039145";
+const LIVE_CHANNEL_ID = "735529538066579467";
+const LOG_CHANNEL_ID = "907160595994910761";
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -23,7 +24,8 @@ router.get('/', (req, res) => {
 
 router.post('/schedule', (req, res) => {
   const the_guild = discordClient.guilds.cache.get(SERVER_ID);
-  const the_channel = the_guild.channels.cache.get(CHANNEL_ID);
+  const the_channel = the_guild.channels.cache.get(LIVE_CHANNEL_ID);
+  const the_log_channel = the_guild.channels.cache.get(LOG_CHANNEL_ID);
 
   // interpret time as Tokyo time
   const scheduledTokyoTime = moment.tz(req.body.messageTime, "Asia/Tokyo");
@@ -37,7 +39,7 @@ router.post('/schedule', (req, res) => {
     the_channel.send(req.body.messageText);
   });
 
-  the_channel.send(
+  the_log_channel.send(
       `Message: 
 > ${req.body.messageText}
 will be sent at (Japan Time):
