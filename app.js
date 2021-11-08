@@ -7,7 +7,7 @@ const multer = require('multer')
 
 const indexRouter = require('./routes/index');
 
-require('dotenv').config()
+// require('dotenv').config()
 
 const app = express();
 
