@@ -1,22 +1,22 @@
 extends layout
 
 block content
-  .container.mt-3
-    if success
-      .alert.alert-success(role=alert) Message successfully scheduled.
+    .container.mt-3
+        if success
+            .alert.alert-success(role=alert) Message successfully scheduled.
 
-    h1 Schedule Message
+        h1 Schedule Message
 
-    p Current UTC time is #{time}
-    p Current time in Japan is #{japanTime}
+        p Current UTC time is #{time}
+        p Current time in Japan is #{japanTime}
 
-    form(action="/schedule", method="post" enctype="multipart/form-data")
-      .mb-3
-        label.form-label(for="messageTime") Time To Send Message (In JST)
-        input.form-control(type="datetime-local", id="messageTime", name="messageTime", required)
+        form(action="/schedule", method="post" enctype="multipart/form-data")
+            .mb-3
+                label.form-label(for="messageTime") Time To Send Message (In JST)
+                input.form-control(type="datetime-local", id="messageTime", name="messageTime", required)
 
-      .mb-3
-        label.form-label(for="messageText") Message Content
-        textarea.form-control(id="messageText", rows="5", name="messageText")
+            .mb-3
+                label.form-label(for="messageText") Message Content
+                textarea.form-control(id="messageText", rows="5", name="messageText")
 
-      button.btn.btn-primary(type=submit) Schedule
+            button.btn.btn-primary(type=submit) Schedule

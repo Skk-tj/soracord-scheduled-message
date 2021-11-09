@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    .container.mt-3
+        h1 List of Scheduled Messages
+
+        table.table.mt-3
+            thead
+            tr
+                th(scope="col") #
+                th(scope="col") Scheduled Time
+                th(scope="col") Message
+                th(scope="col") Actions
+            tbody
+                each job, index in messages
+                    tr
+                        th(scope="row")= index
+                        td= job.time
+                        td= job.message
+                        td
+                            a.btn.btn-danger.btn-sm(role="button", href=`/delete?message=${index}`) Delete
