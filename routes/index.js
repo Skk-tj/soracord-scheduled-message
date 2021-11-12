@@ -7,7 +7,7 @@ const discordClient = require('../discord-client')
 const moment = require('moment-timezone');
 
 const SERVER_ID = "734575232245039145";
-const LIVE_CHANNEL_ID = "734576939976753232";
+const LIVE_CHANNEL_ID = "735529538066579467";
 const LOG_CHANNEL_ID = "907160595994910761";
 
 let scheduledMessages = [];
