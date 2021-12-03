@@ -8,7 +8,18 @@ const moment = require('moment-timezone');
 
 const SERVER_ID = "734575232245039145";
 const LIVE_CHANNEL_ID = "735529538066579467";
+const ADMIN_CHANNEL_ID = "734576939976753232";
 const LOG_CHANNEL_ID = "907160595994910761";
+
+const CHANNELS = {
+  "live": ["#sora-live", LIVE_CHANNEL_ID],
+  "admin": ["#admin", ADMIN_CHANNEL_ID]
+};
+
+const channel_reverse_index = {
+  LIVE_CHANNEL_ID: "#sora-live",
+  ADMIN_CHANNEL_ID: "#admin"
+}
 
 let scheduledMessages = [];
 
@@ -18,9 +29,9 @@ router.get('/', (req, res) => {
   const japanTime = moment.tz(time.toISOString(), "Asia/Tokyo").format()
 
   if ("success" in req.query) {
-    res.render('index', {success: true, time: time, japanTime: japanTime});
+    res.render('index', {success: true, time: time, japanTime: japanTime, channels: CHANNELS});
   } else {
-    res.render('index', {time: time, japanTime: japanTime});
+    res.render('index', {time: time, japanTime: japanTime, channels: CHANNELS});
   }
 });
 
@@ -46,14 +57,20 @@ router.get('/delete', (req, res) => {
 
     res.redirect("/list");
   } else {
-
     res.sendStatus(400);
   }
 });
 
 router.post('/schedule', (req, res) => {
+  const the_channel_id = req.body.messageTarget
+
+  if (!the_channel_id) {
+    res.sendStatus(400);
+    return
+  }
+
   const the_guild = discordClient.guilds.cache.get(SERVER_ID);
-  const the_channel = the_guild.channels.cache.get(LIVE_CHANNEL_ID);
+  const the_channel = the_guild.channels.cache.get(the_channel_id);
   const the_log_channel = the_guild.channels.cache.get(LOG_CHANNEL_ID);
 
   // interpret time as Tokyo time
@@ -72,11 +89,14 @@ router.post('/schedule', (req, res) => {
       `Message: 
 > ${req.body.messageText}
 will be sent at (Japan Time):
-\`${scheduledTokyoTime.format()}\``
+\`${scheduledTokyoTime.format()}\`
+This message will be sent to <#${the_channel_id}>
+`
   );
 
   scheduledMessages.push({
     time: scheduledTokyoTime.format(),
+    channel: channel_reverse_index[the_channel_id],
     message: req.body.messageText,
     job: job
   });

@@ -19,4 +19,11 @@ block content
                 label.form-label(for="messageText") Message Content
                 textarea.form-control(id="messageText", rows="5", name="messageText")
 
+            .mb-3
+                label.form-label(for="messageTarget") Targeted Channel
+                select.form-select(aria-label="Default select example", id="messageTarget", name="messageTarget")
+                   each entry, index in Object.entries(channels)
+                    - const [key, value] = entry
+                        option(selected=(index === 0), value=value[1])= value[0]
+
             button.btn.btn-primary(type=submit) Schedule

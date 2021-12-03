@@ -9,13 +9,15 @@ block content
             tr
                 th(scope="col") #
                 th(scope="col") Scheduled Time
+                th(scope="col") Channel
                 th(scope="col") Message
                 th(scope="col") Actions
             tbody
                 each job, index in messages
                     tr
-                        th(scope="row")= index
+                        th(scope="row")= index+1
                         td= job.time
+                        td= job.channel
                         td= job.message
                         td
                             a.btn.btn-danger.btn-sm(role="button", href=`/delete?message=${index}`) Delete
