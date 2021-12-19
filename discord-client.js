@@ -6,6 +6,6 @@ discordClient.once('ready', (c) => {
     console.log(`Discord Client Ready. Logged in as ${c.user.tag}`);
 });
 
-discordClient.login(process.env.DISCORD_TOKEN).then();
+(async () => discordClient.login(process.env.DISCORD_TOKEN))();
 
 module.exports = discordClient;
