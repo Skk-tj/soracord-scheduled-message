@@ -99,7 +99,7 @@ This message will be sent to <#${the_channel_id}>
 
   scheduledMessages.push({
     time: scheduledTokyoTime.format(),
-    channel: channel_reverse_index.the_channel_id,
+    channel: channel_reverse_index[the_channel_id],
     message: req.body.messageText,
     job: job
   });
