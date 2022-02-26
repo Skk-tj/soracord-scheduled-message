@@ -9,16 +9,19 @@ const moment = require('moment-timezone');
 const SERVER_ID = "734575232245039145";
 const LIVE_CHANNEL_ID = "735529538066579467";
 const ADMIN_CHANNEL_ID = "734576939976753232";
+const FAN_CLUB_CHANNEL_ID = "940694871667277894";
 const LOG_CHANNEL_ID = "907160595994910761";
 
 const CHANNELS = {
   "live": ["#sora-live", LIVE_CHANNEL_ID],
-  "admin": ["#admin", ADMIN_CHANNEL_ID]
+  "admin": ["#admin", ADMIN_CHANNEL_ID],
+  "fanclub": ["#sora-fanclub", FAN_CLUB_CHANNEL_ID]
 };
 
 const channel_reverse_index = {
-  LIVE_CHANNEL_ID: "#sora-live",
-  ADMIN_CHANNEL_ID: "#admin"
+  "735529538066579467": "#sora-live",
+  "734576939976753232": "#admin",
+  "940694871667277894": "#sora-fanclub"
 }
 
 let scheduledMessages = [];
@@ -96,7 +99,7 @@ This message will be sent to <#${the_channel_id}>
 
   scheduledMessages.push({
     time: scheduledTokyoTime.format(),
-    channel: channel_reverse_index[the_channel_id],
+    channel: channel_reverse_index.the_channel_id,
     message: req.body.messageText,
     job: job
   });
