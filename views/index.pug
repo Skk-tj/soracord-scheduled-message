@@ -7,8 +7,8 @@ block content
 
         h1 Schedule Message
 
-        p Current UTC time is #{time}
-        p Current time in Japan is #{japanTime}
+        p Current local time is #[b #{time}]
+        p Current time in Japan is #[b #{japanTime}]
 
         form(action="/schedule", method="post" enctype="multipart/form-data")
             .mb-3
@@ -26,4 +26,14 @@ block content
                     - const [key, value] = entry
                         option(selected=(index === 0), value=value[1])= value[0]
 
+            button.btn.btn-secondary.me-2(onclick='appendRoleText("830949159774191666")', type="button") Add GuestPings
+            button.btn.btn-secondary.me-2(onclick='appendRoleText("775411371083956254")', type="button") Add LivePings
+            button.btn.btn-secondary.me-2(onclick='appendRoleText("945962353567076362")', type="button") Add FunClubPings
+
             button.btn.btn-primary(type=submit) Schedule
+
+    script.
+        function appendRoleText(roleId) {
+            document.getElementById("messageText").value += `<@&${roleId}>`
+        }
+

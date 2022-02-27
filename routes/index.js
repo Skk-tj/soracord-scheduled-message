@@ -29,7 +29,7 @@ let scheduledMessages = [];
 /* GET home page. */
 router.get('/', (req, res) => {
   const time = new Date();
-  const japanTime = moment.tz(time.toISOString(), "Asia/Tokyo").format()
+  const japanTime = moment.tz(time.toISOString(), "Asia/Tokyo").format("ddd MMM DD YYYY HH:mm:ss")
 
   if ("success" in req.query) {
     res.render('index', {success: true, time: time, japanTime: japanTime, channels: CHANNELS});
